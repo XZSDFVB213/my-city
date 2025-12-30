@@ -3,6 +3,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { OrdersModule } from './orders/orders.module';
+import { DishesModule } from './dishes/dishes.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { OrdersModule } from './orders/orders.module';
         uri: configService.get<string>('DB_URL'),
       }),
     }),
+    DishesModule,
+    AuthModule,
     RestaurantsModule,
     OrdersModule,
   ],

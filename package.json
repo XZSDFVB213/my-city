@@ -16,6 +16,8 @@
     "@angular/platform-server": "~21.0.0",
     "@angular/router": "~21.0.0",
     "@angular/ssr": "~21.0.0",
+    "@aws-sdk/client-s3": "^3.958.0",
+    "@aws-sdk/s3-request-presigner": "^3.958.0",
     "@nestjs/common": "^10.0.2",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^10.0.2",

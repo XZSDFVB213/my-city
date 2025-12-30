@@ -9,6 +9,9 @@ export class RestaurantEntity extends Document {
   @Prop({ required: true })
   name!: string;
 
+  @Prop({ required: false })
+  telegramChatId?: string;
+
   @Prop()
   description?: string;
 

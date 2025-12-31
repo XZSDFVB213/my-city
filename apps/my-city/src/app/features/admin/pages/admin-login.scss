@@ -1,0 +1,28 @@
+.auth-form {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
+}
+
+mat-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 8px;
+}
+
+.full-width {
+  width: 100%;
+}
+mat-card-subtitle{
+    margin-bottom: 10px;
+}
+.error {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: rgba(244, 67, 54, 0.1);
+  color: #d32f2f;
+  font-size: 14px;
+}

@@ -1,13 +1,66 @@
-<form [formGroup]="form" (ngSubmit)="login()">
-  <input formControlName="secret" placeholder="Введите секретный ключ" />
+<form
+  [formGroup]="form"
+  (ngSubmit)="login()"
+  class="auth-form"
+  appearance="outline"
+>
 
-@if (error === null) {
-    <p class="error">{{ error }}</p>
-  }
-@if(error !== null) {
-    <button type="button" (click)="logout()">Выйти</button>
-}
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Вход</mat-card-title>
+      <mat-card-subtitle>Введите секретный ключ</mat-card-subtitle>
+    </mat-card-header>
 
+    <mat-card-content>
 
-  <button type="submit" [disabled]="form.invalid">Войти</button>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Секретный ключ</mat-label>
+        <input
+          matInput
+          formControlName="secret"
+          placeholder="Введите секретный ключ"
+          type="password"
+        />
+        @if(form.get('secret')?.invalid){
+           <mat-error>
+          Ключ обязателен
+        </mat-error>
+        }
+       
+      </mat-form-field>
+
+      @if (error) {
+        <div class="error">
+          {{ error }}
+        </div>
+      }
+
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      @if (!error) {
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="form.invalid"
+        >
+          Войти
+        </button>
+      }
+
+      @if (error) {
+        <button
+          mat-stroked-button
+          color="warn"
+          type="button"
+          (click)="logout()"
+          routerLink="/"
+        >
+          Выйти
+        </button>
+      }
+    </mat-card-actions>
+  </mat-card>
+
 </form>

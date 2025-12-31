@@ -2,9 +2,14 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { AuthService } from '../services/auth-service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // тут лежат ngIf, ngFor
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-admin-login',
-  imports: [CommonModule,ReactiveFormsModule,],
+  imports: [CommonModule,ReactiveFormsModule,MatInputModule,MatFormFieldModule,MatButtonModule,MatCardModule,RouterLink],
   templateUrl: './admin-login.html',
   styleUrl: './admin-login.scss',
   changeDetection:ChangeDetectionStrategy.OnPush

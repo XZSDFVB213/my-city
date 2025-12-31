@@ -1,0 +1,13 @@
+<form [formGroup]="form" (ngSubmit)="login()">
+  <input formControlName="secret" placeholder="Введите секретный ключ" />
+
+@if (error === null) {
+    <p class="error">{{ error }}</p>
+  }
+@if(error !== null) {
+    <button type="button" (click)="logout()">Выйти</button>
+}
+
+
+  <button type="submit" [disabled]="form.invalid">Войти</button>
+</form>

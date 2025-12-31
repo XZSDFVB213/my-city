@@ -8,11 +8,14 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { AdminTokenInterceptor } from './core/interceptors/admin-token.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideClientHydration(withEventReplay()),
     provideBrowserGlobalErrorListeners(),
     provideRouter(appRoutes),
+    provideHttpClient(withInterceptors([AdminTokenInterceptor])),
   ],
 };

@@ -5,6 +5,7 @@ import { adminRoutes } from './features/admin/routes';
 export const appRoutes = [
   ...adminRoutes,
   {path:'contacts',loadComponent: () => import('./features/contact/pages/contact').then(m => m.ContactComponent)},
+  {path:'',loadComponent: () => import('./features/home/pages/home-page').then(m => m.HomePage)},
 //   ...restaurantRoutes,
 //   ...dishesRoutes,
   { path: '**', redirectTo: '' }

@@ -1,0 +1,12 @@
+<section class="popular">
+  <header>
+    <h2>Часто заказывают</h2>
+    <p>Популярные рестораны в вашем городе</p>
+  </header>
+
+  <div class="grid">
+    @for (restaurant of restaurants; track restaurant.id) {
+      <app-restaurant-card [restaurant]="restaurant" />
+    }
+  </div>
+</section>

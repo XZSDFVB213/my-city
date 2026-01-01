@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-contact',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatCardModule],
   templateUrl: './contact.html',
   styleUrls: ['./contact.scss'],

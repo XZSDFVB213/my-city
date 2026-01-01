@@ -6,7 +6,7 @@ import { RestaurantCard } from '../restaurant-card/restaurant-card';
   selector: 'app-popular-restaurants',
   imports: [RestaurantCard],
   templateUrl: './popular-restaurants.html',
-  styleUrl: './popular-restaurants.css',
+  styleUrl: './popular-restaurants.scss',
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class PopularRestaurants {

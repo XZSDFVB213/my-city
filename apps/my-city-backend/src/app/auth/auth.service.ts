@@ -3,29 +3,26 @@ import * as crypto from 'crypto';
 
 @Injectable()
 export class AuthService {
-  private readonly adminSecretHash: string;
+  // В памяти пока, можно позже заменить на базу
+  private tokens: Set<string> = new Set();
+
+  private readonly adminSecret: string;
 
   constructor() {
-    const secret = process.env.ADMIN_SECRET_KEY;
-    if (!secret) {
-      throw new Error('ADMIN_SECRET_KEY is not defined');
-    }
-    this.adminSecretHash = this.hash(secret);
+    this.adminSecret = process.env.ADMIN_SECRET_KEY || 'secret';
   }
 
-  private hash(secret: string) {
-    return crypto.createHash('sha256').update(secret).digest('hex');
-  }
-  validateAdmin(secret: string): boolean {
-    const incomingHash = this.hash(secret);
-    return incomingHash === this.adminSecretHash;
-  }
   login(secret: string) {
-    const isValid = this.validateAdmin(secret);
-    if (!isValid) {
+    if (secret !== this.adminSecret) {
       throw new UnauthorizedException('Доступ только для Админа!');
     }
+
     const token = crypto.randomUUID();
+    this.tokens.add(token);
     return { isAdmin: true, token };
+  }
+
+  validateToken(token: string): boolean {
+    return this.tokens.has(token);
   }
 }

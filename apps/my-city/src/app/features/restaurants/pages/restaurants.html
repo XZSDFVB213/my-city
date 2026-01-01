@@ -1,0 +1,22 @@
+<section class="restaurants">
+  <h2>Рестораны</h2>
+<div class="header">
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Поиск</mat-label>
+      <input matInput [(ngModel)]="search" />
+    </mat-form-field> -->
+
+    @if (isAdmin$ | async) {
+      <button mat-flat-button color="primary" (click)="openCreateDialog()">
+        + Добавить ресторан
+      </button>
+    }
+  </div>
+  @if (restaurants$ | async; as restaurants) {
+    <div class="grid">
+      @for (r of restaurants; track r.id) {
+        <app-restaurant-card [restaurant]="r" />
+      }
+    </div>
+  }
+</section>

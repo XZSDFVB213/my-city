@@ -24,6 +24,7 @@ import { ContactModule } from './contact/contact.module';
     ContactModule,
     OrdersModule,
     ContactModule,
+    
   ],
 })
 export class AppModule {}

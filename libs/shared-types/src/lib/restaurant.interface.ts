@@ -6,6 +6,6 @@ export interface Restaurant {
   description?: string;
   isActive: boolean;
   imageUrl?: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

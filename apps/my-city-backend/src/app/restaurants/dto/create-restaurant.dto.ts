@@ -6,9 +6,10 @@ export class CreateRestaurantDto {
   name!: string;
 
   @IsString()
-  slug!: string;
-
   @IsOptional()
+  slug!: string;
+  @IsString()
+  cuisine: string;
   @IsString()
   description?: string;
   @IsOptional()

@@ -4,13 +4,15 @@ import { RestaurantsController } from './restaurants.controller';
 import { RestaurantsService } from './restaurant.service';
 import { RestaurantEntity, RestaurantSchema } from '@my-city/entities';
 import { UploadModule } from '../upload/upload.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: RestaurantEntity.name, schema: RestaurantSchema },
     ]),
-    UploadModule
+    UploadModule,
+    AuthModule
   ],
   controllers: [RestaurantsController],
   providers: [RestaurantsService],

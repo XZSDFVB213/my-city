@@ -4,22 +4,23 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { AuthService } from './auth.service';
+
 
 @Injectable()
 export class AdminGuard implements CanActivate {
-  constructor(private configService: ConfigService) {}
+  constructor(private authService: AuthService) {}
 
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
+    const token = request.headers['x-admin-key'];
 
-    const adminKey = request.headers['x-admin-key'];
-    const secret = this.configService.get<string>('ADMIN_SECRET_KEY');
-
-    if (!adminKey || adminKey !== secret) {
+    if (!token || !this.authService.validateToken(token)) {
       throw new UnauthorizedException('Admin access only');
     }
 
     return true;
   }
 }
+
+

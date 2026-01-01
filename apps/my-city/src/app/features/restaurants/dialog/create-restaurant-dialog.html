@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Новый ресторан</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-dialog-content>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Название</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Описание</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Кухня</mat-label>
+      <input matInput formControlName="cuisine" />
+    </mat-form-field>
+
+    <input
+      type="file"
+      accept="image/*"
+      class="file-input"
+      (change)="onFileSelected($event)"
+    />
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Отмена</button>
+    <button mat-flat-button color="primary" type="submit">Создать</button>
+  </mat-dialog-actions>
+</form>

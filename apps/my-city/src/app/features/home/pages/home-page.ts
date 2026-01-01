@@ -6,7 +6,7 @@ import { Advantages } from '../components/advantages/advantages';
   selector: 'app-home-page',
   imports: [HeroSection,PopularRestaurants,Advantages],
   templateUrl: './home-page.html',
-  styleUrl: './home-page.css',
+  styleUrl: './home-page.scss',
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class HomePage {}

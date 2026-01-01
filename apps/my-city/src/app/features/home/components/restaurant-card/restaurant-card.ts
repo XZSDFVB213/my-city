@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-restaurant-card',
   imports: [MatButtonModule,RouterLink,MatCardActions,MatCardContent,MatCard],
   templateUrl: './restaurant-card.html',
-  styleUrl: './restaurant-card.css',
+  styleUrl: './restaurant-card.scss',
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class RestaurantCard {

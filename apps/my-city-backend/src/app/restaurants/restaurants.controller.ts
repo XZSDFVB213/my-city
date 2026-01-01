@@ -23,7 +23,7 @@ export class RestaurantsController {
 
   @Post()
   @UseGuards(AdminGuard)
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('image'))
   async create(@Body() dto: CreateRestaurantDto,@UploadedFile() file?: Express.Multer.File) {
     if(file){
       const {url} = await this.uploadService.uploadFile(file);

@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class RestaurantEntity extends Document {
-  @Prop({ required: true, unique: true })
+  @Prop({ required: false, unique: true })
   slug!: string;
 
   @Prop({ required: true })

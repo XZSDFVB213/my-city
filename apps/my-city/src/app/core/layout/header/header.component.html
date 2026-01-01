@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" class="toolbar">
+  <span class="logo" routerLink="/">My City</span>
+
+  <span class="spacer"></span>
+
+  <!-- Ссылки для десктопа -->
+  <nav class="nav-links">
+     @for (link of links; track link.id) {
+    <a mat-button [routerLink]="link.path">{{ link.name }}</a>
+} 
+  </nav>
+
+  <!-- Бургер-меню для мобилки -->
+  <mat-menu #menu="matMenu">
+    @for (link of links; track link.id) {
+    <button mat-menu-item [routerLink]="link.path">{{ link.name }}</button>
+    }
+  </mat-menu>
+
+  <button class="mobile-menu-btn" mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>

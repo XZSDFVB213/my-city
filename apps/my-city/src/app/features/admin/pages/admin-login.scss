@@ -3,17 +3,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
 }
 
 mat-card {
   width: 100%;
   max-width: 420px;
   padding: 8px;
+  background: #fff;
 }
 
 .full-width {
   width: 100%;
+  background: #fff;
 }
 mat-card-subtitle{
     margin-bottom: 10px;

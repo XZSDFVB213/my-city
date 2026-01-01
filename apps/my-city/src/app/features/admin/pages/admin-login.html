@@ -21,46 +21,42 @@
           placeholder="Введите секретный ключ"
           type="password"
         />
-        @if(form.get('secret')?.invalid){
-           <mat-error>
-          Ключ обязателен
-        </mat-error>
-        }
+        @if (form.get('secret')?.invalid && form.get('secret')?.touched) {
+  <mat-error>Ключ обязателен</mat-error>
+}
        
       </mat-form-field>
 
-      @if (error) {
-        <div class="error">
-          {{ error }}
-        </div>
-      }
+     
 
     </mat-card-content>
 
     <mat-card-actions align="end">
-      @if (!error) {
-        <button
-          mat-flat-button
-          color="primary"
-          type="submit"
-          [disabled]="form.invalid"
-        >
-          Войти
-        </button>
-      }
 
-      @if (error) {
-        <button
-          mat-stroked-button
-          color="warn"
-          type="button"
-          (click)="logout()"
-          routerLink="/"
-        >
-          Выйти
-        </button>
-      }
-    </mat-card-actions>
+  @if ((isAdmin)) {
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Войти
+    </button>
+  }
+
+  @if (isAdmin) {
+    <button
+      mat-stroked-button
+      color="warn"
+      type="button"
+      (click)="logout()"
+      routerLink="/"
+    >
+      Выйти
+    </button>
+  }
+
+</mat-card-actions>
   </mat-card>
 
 </form>

@@ -1,12 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material/prebuilt-themes/indigo-pink.css';
-* {
+*{
   margin: 0px;
   padding: 0px;
+  
 }
 body {
   margin: 0px;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff !important;
   background: linear-gradient(
     90deg,
     #121216 0%,
@@ -35,6 +38,4 @@ body {
     #3b3c40 92.308%,
     #3d3e42 calc(92.308% + 1px) 100%
   );
-  font-family: 'Montserrat', sans-serif;
-  color: #fff;
 }

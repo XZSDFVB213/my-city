@@ -1,0 +1,63 @@
+.contact-wrapper {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  mat-card-subtitle {
+    color: #fff;
+  }
+  .contact-form,
+  .contact-info {
+    flex: 1;
+    background-color: #1f1f1f; // тёмно-серый фон карточек для контраста
+    color: #fff; // текст белый
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .success {
+    color: #4caf50; // зелёный для успеха
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+
+  .error {
+    color: #f44336; // красный для ошибки
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  .full-width {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    input,
+    textarea {
+      color: #fff; // текст внутри инпутов белый
+    }
+
+    mat-error {
+      color: #ff6b6b; // ошибки красные для контраста
+    }
+
+    mat-label {
+      color: #ccc; // подсказка светло-серая
+    }
+  }
+
+  button {
+    margin-top: 1rem;
+    color: #fff;
+  }
+
+  p {
+    margin: 0.5rem 0;
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .contact-form,
+    .contact-info {
+      width: 100%;
+    }
+  }
+}

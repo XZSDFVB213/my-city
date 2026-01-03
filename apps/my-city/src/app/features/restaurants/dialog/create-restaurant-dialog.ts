@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,7 +8,7 @@ import {
 import { MatDialogContent, MatDialogRef } from '@angular/material/dialog';
 import { ResturantService } from '../services/resturant-service';
 import { MatDialogActions } from '@angular/material/dialog';
-import { MatFormField, MatLabel } from '@angular/material/input';
+import { MatFormField, MatInputModule, MatLabel } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-create-restaurant-dialog',
@@ -17,11 +17,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatLabel,
     MatFormField,
     MatButtonModule,
+    MatInputModule,
     MatDialogContent,
     ReactiveFormsModule,
   ],
   templateUrl: './create-restaurant-dialog.html',
   styleUrl: './create-restaurant-dialog.scss',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class CreateRestaurantDialog implements OnInit {
   form!: FormGroup;

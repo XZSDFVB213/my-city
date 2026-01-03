@@ -5,6 +5,7 @@ import { RestaurantEntity } from '@my-city/entities';
 import { CreateRestaurantDto } from './dto/create-restaurant.dto';
 import { UpdateRestaurantDto } from './dto/update-restaurant.dto';
 import { UploadService } from '../upload/upload.service';
+import { mapMongoId } from '../../common/mappers/mongo.mapper';
 
 @Injectable()
 export class RestaurantsService {
@@ -16,24 +17,26 @@ export class RestaurantsService {
 
   async create(dto: CreateRestaurantDto): Promise<RestaurantEntity> {
     const created = new this.restaurantModel(dto);
-    return created.save();
+    await created.save();
+    return mapMongoId(created);
   }
 
   async findAll(): Promise<RestaurantEntity[]> {
-    return this.restaurantModel.find().exec();
+    const restaurants = await this.restaurantModel.find().exec();
+    return restaurants.map(mapMongoId);
   }
 
   async findOne(id: string): Promise<RestaurantEntity> {
     const restaurant = await this.restaurantModel.findById(id).exec();
     if (!restaurant) throw new NotFoundException('Restaurant not found');
-    return restaurant;
+    return mapMongoId(restaurant);
   }
 
   async update(id: string, dto: UpdateRestaurantDto): Promise<RestaurantEntity> {
     const updated = await this.restaurantModel.findByIdAndUpdate(id, dto, { new: true }).exec();
     if (!updated) throw new NotFoundException('Restaurant not found');
     
-    return updated;
+    return mapMongoId(updated);
   }
 
   async remove(id: string): Promise<void> {

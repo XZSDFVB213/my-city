@@ -6,7 +6,6 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
-
 @Injectable()
 export class AdminGuard implements CanActivate {
   constructor(private authService: AuthService) {}
@@ -19,8 +18,7 @@ export class AdminGuard implements CanActivate {
       throw new UnauthorizedException('Admin access only');
     }
 
+    
     return true;
   }
 }
-
-

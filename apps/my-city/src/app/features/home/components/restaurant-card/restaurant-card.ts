@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  inject,
   Input,
   OnInit,
   Output,
@@ -14,11 +15,14 @@ import {
 import { RouterLink } from '@angular/router';
 import { Restaurant } from '@my-city/shared-types';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../../../admin/services/auth-service';
+import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-restaurant-card',
   standalone: true,
   imports: [
     MatButtonModule,
+    AsyncPipe,
     RouterLink,
     MatCardActions,
     MatCardContent,
@@ -29,7 +33,8 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RestaurantCard implements OnInit {
-
+  private authSerive = inject(AuthService)
+  isAdmin$ = this.authSerive.isAdmin$
   @Input({ required: true }) restaurant!: Restaurant;
   ngOnInit(): void {
       console.log(this.restaurant);

@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { CreateDishDto } from './dto/create-dish.dto';
 import { UpdateDishDto } from './dto/update-dish.dto';
 import { UploadService } from '../upload/upload.service';
+import { mapMongoId } from '../../common/mappers/mongo.mapper';
 
 @Injectable()
 export class DishesService {
@@ -15,7 +16,7 @@ export class DishesService {
 
   async create(dto: CreateDishDto): Promise<DishEntity> {
     const created = new this.dishModel(dto);
-    return created.save();
+    return mapMongoId(created).save();
   }
   async remove(id: string): Promise<void> {
     const result = await this.dishModel.findByIdAndDelete(id).exec();
@@ -30,14 +31,15 @@ export class DishesService {
       .findByIdAndUpdate(id, dto, { new: true })
       .exec();
     if (!updated) throw new NotFoundException('Dish not found');
-    return updated;
+    return mapMongoId(updated);
   }
   async findAll(): Promise<DishEntity[]> {
-    return this.dishModel.find().exec();
+    const dishes = await this.dishModel.find().exec();
+    return dishes.map(mapMongoId);
   }
   async findOne(id: string): Promise<DishEntity> {
     const dish = await this.dishModel.findById(id).exec();
     if (!dish) throw new NotFoundException('Dish not found');
-    return dish;
+    return mapMongoId(dish);
   }
 }

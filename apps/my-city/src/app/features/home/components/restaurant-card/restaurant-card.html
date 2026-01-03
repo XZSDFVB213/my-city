@@ -18,14 +18,16 @@
     >
       Открыть меню
     </button>
-
-    <button
+    @if(isAdmin$ | async) {
+      <button
       mat-flat-button
       color="warn"
       (click)='onDelete()'
     >
       Удалить
     </button>
+    }
+    
   </mat-card-actions>
 
 </mat-card>

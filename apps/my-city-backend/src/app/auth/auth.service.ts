@@ -3,13 +3,17 @@ import * as crypto from 'crypto';
 
 @Injectable()
 export class AuthService {
-  // В памяти пока, можно позже заменить на базу
-  private tokens: Set<string> = new Set();
-
   private readonly adminSecret: string;
 
   constructor() {
     this.adminSecret = process.env.ADMIN_SECRET_KEY || 'secret';
+  }
+
+  private hashSecret(secret: string): string {
+    return crypto
+      .createHash('sha256')
+      .update(secret)
+      .digest('hex');
   }
 
   login(secret: string) {
@@ -17,12 +21,14 @@ export class AuthService {
       throw new UnauthorizedException('Доступ только для Админа!');
     }
 
-    const token = crypto.randomUUID();
-    this.tokens.add(token);
-    return { isAdmin: true, token };
+    return {
+      isAdmin: true,
+      token: this.hashSecret(this.adminSecret),
+    };
   }
 
   validateToken(token: string): boolean {
-    return this.tokens.has(token);
+    const expected = this.hashSecret(this.adminSecret);
+    return token === expected;
   }
 }

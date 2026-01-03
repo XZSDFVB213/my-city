@@ -33,12 +33,12 @@ export class RestaurantsController {
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.restaurantsService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.restaurantsService.findOne(id);
   }
 
@@ -54,9 +54,8 @@ export class RestaurantsController {
   }
 
   @Delete(':id')
-  
   @UseGuards(AdminGuard)
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.restaurantsService.remove(id);
   }
 }

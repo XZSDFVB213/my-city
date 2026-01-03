@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, OnInit } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class AuthService {
   public token$ = this._token$.asObservable();
   private http = inject(HttpClient);
   
-  constructor() {
+  init() {
     const token = localStorage.getItem('adminToken');
     if (token) {
       this._isAdmin$.next(true) ;

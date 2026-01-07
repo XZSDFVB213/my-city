@@ -1,0 +1,89 @@
+:host {
+  display: block;
+}
+*{
+  color: black;
+}
+/* Сам диалог */
+::ng-deep .mat-mdc-dialog-container {
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 0;
+}
+
+/* Заголовок */
+h2 {
+  margin: 0;
+  padding: 20px 24px;
+  font-size: 20px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Контент */
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+/* Поля */
+mat-form-field {
+  width: 100%;
+}
+
+/* Input file */
+input[type='file'] {
+  color: #aaa;
+  font-size: 14px;
+
+  &::file-selector-button {
+    background: #1f1f1f;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  &::file-selector-button:hover {
+    background: #2a2a2a;
+  }
+}
+
+/* Actions */
+mat-dialog-actions {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 12px;
+
+  button {
+    border-radius: 10px;
+  }
+}
+
+/* Primary button */
+button[color='primary'] {
+  font-weight: 600;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  ::ng-deep .mat-mdc-dialog-container {
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  mat-dialog-content {
+    padding: 16px;
+  }
+
+  mat-dialog-actions {
+    padding: 12px 16px;
+  }
+}

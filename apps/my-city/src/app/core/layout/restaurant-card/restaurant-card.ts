@@ -15,7 +15,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { Restaurant } from '@my-city/shared-types';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from '../../../admin/services/auth-service';
+import { AuthService } from '../../../features/admin/services/auth-service';
 import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-restaurant-card',

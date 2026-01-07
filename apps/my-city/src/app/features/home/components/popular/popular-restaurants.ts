@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Restaurant } from '@my-city/shared-types';
-import { RestaurantCard } from '../restaurant-card/restaurant-card';
+import { RestaurantCard } from '../../../../core/layout/restaurant-card/restaurant-card';
 
 @Component({
   selector: 'app-popular-restaurants',

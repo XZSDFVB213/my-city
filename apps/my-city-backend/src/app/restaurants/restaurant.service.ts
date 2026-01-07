@@ -47,4 +47,5 @@ export class RestaurantsService {
   }
     if (!result) throw new NotFoundException('Restaurant not found');
   }
+  
 }

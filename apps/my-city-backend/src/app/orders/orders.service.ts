@@ -13,13 +13,20 @@ export class OrdersService {
     private orderModel: Model<OrderEntity>,
   ) {}
 
-  async create(dto: CreateOrderDto): Promise<OrderEntity> {
-    const created = new this.orderModel(dto);
-    return mapMongoId(created).save();
-  }
+  async create(dto: CreateOrderDto) {
+  const created = new this.orderModel({
+    ...dto,
+    restaurantId: new Types.ObjectId(dto.restaurantId),
+  });
+
+  const saved = await created.save();
+  return mapMongoId(saved);
+}
+
   async findByStatus(status: 'pending' | 'confirmed' | 'completed') {
-    return this.orderModel.find({ status }).exec();
-  }
+  const orders = await this.orderModel.find({ status }).exec();
+  return orders.map(mapMongoId);
+}
   async findAll(): Promise<OrderEntity[]> {
     const orders = await this.orderModel.find().exec();
     return orders.map(mapMongoId);

@@ -16,7 +16,8 @@ export class DishesService {
 
   async create(dto: CreateDishDto): Promise<DishEntity> {
     const created = new this.dishModel(dto);
-    return mapMongoId(created).save();
+    await created.save();
+    return mapMongoId(created);
   }
   async remove(id: string): Promise<void> {
     const result = await this.dishModel.findByIdAndDelete(id).exec();
@@ -42,4 +43,9 @@ export class DishesService {
     if (!dish) throw new NotFoundException('Dish not found');
     return mapMongoId(dish);
   }
+  async getByRestaurantId(restaurantId: string): Promise<DishEntity[]> {
+  const dishes = await this.dishModel.find({ restaurantId }).exec();
+  console.log(dishes); // теперь должно показать блюда
+  return dishes.map(mapMongoId);
+}
 }

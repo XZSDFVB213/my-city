@@ -26,7 +26,7 @@ export class DishesController {
 
   @Post()
   @UseGuards(AdminGuard)
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('image'))
   async create(
     @Body() dto: CreateDishDto,
     @UploadedFile() file?: Express.Multer.File,
@@ -42,7 +42,10 @@ export class DishesController {
   findAll() {
     return this.dishesService.findAll();
   }
-
+@Get('restaurants/:restaurantId/dishes')
+  getByRestaurantId(@Param('restaurantId') restaurantId: string) {
+    return this.dishesService.getByRestaurantId(restaurantId);
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.dishesService.findOne(id);
@@ -50,7 +53,7 @@ export class DishesController {
 
   @Patch(':id')
   @UseGuards(AdminGuard)
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('image'))
   async update(
     @Param('id') id: string,
     @Body() dto: UpdateDishDto,
@@ -62,7 +65,7 @@ export class DishesController {
     }
     return this.dishesService.update(id, dto);
   }
-
+  
   @Delete(':id')
   @UseGuards(AdminGuard)
   remove(@Param('id') id: string) {

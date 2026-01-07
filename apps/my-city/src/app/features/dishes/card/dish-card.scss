@@ -1,0 +1,38 @@
+.restaurant-card {
+  background: #121212;
+  color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  }
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+      background: #121212;
+
+  }
+  img {
+    height: 180px;
+    object-fit: cover;
+  }
+
+  h3 {
+    margin: 12px 0 4px;
+    font-size: 1.1rem;
+  }
+
+  p {
+    margin: 0;
+    opacity: 0.7;
+  }
+
+  mat-card-actions {
+    padding: 16px;
+    gap: 10px;
+  }
+}

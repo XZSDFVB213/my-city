@@ -1,0 +1,39 @@
+<mat-card class="restaurant-card">
+  <img
+    mat-card-image
+    [src]="cartItem.imageUrl"
+    [alt]="cartItem.name"
+  />
+
+  <mat-card-content>
+    <h3>{{ cartItem.name }}</h3>
+    <p>{{ cartItem.description }}</p>
+    <p>{{ cartItem.price }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+      <button
+      mat-flat-button
+      color="warn"
+      (click)='onRemove()'
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button
+      mat-flat-button
+      color="warn"
+      (click)='onIncrease()'
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+    <button
+      mat-flat-button
+      color="warn"
+      (click)='onDecrease()'
+    >
+      <mat-icon>remove</mat-icon>
+    </button>
+    
+  </mat-card-actions>
+
+</mat-card>

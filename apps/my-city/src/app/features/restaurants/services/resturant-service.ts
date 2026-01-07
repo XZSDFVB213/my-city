@@ -31,6 +31,9 @@ public getRestaurants():Observable<Restaurant[]>{
       })
     );
   }
+  public getRestaurantById(id: string): Observable<Restaurant> {
+    return this.http.get<Restaurant>(`http://localhost:3000/api/restaurants/${id}`);
+  }
 }
 
 

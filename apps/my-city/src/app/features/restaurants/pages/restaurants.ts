@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateRestaurantDialog } from '../dialog/create-restaurant-dialog';
-import { RestaurantCard } from '../../home/components/restaurant-card/restaurant-card';
+import { RestaurantCard } from '../../../core/layout/restaurant-card/restaurant-card';
 @Component({
   selector: 'app-restaurants',
   standalone: true,
@@ -26,6 +26,7 @@ export class Restaurants implements OnInit {
   public restaurants$ = this.restaurantService.restaurants$;
   protected isAdmin$ = this.authService.isAdmin$;
     private dialog =  inject(MatDialog)
+
   ngOnInit() {
     console.log('Console');
     this.restaurantService.getRestaurants().subscribe();

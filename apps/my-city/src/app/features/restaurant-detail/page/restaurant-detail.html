@@ -1,0 +1,25 @@
+@if(restaurant$ | async; as restaurant ){
+    <section >
+    @if (isAdmin$ | async) {
+      <button mat-flat-button color="primary" (click)="openCreateDialog()">
+        + Добавить блюдо
+      </button>
+    }
+  <h1>{{ restaurant.name }}</h1>
+  <p>{{ restaurant.cuisine }}</p>
+  <img [src]="restaurant.imageUrl" alt="{{ restaurant.name }}" />
+    
+  <h2>Меню</h2>
+  <div class="dishes">
+    @for(dish of dishes$ | async; track dish.id) {
+        <app-dish-card
+      [dish]="dish"
+      (order)="getInBasket(dish.id)"
+      (delete)="onDelete(dish.id)"
+    ></app-dish-card>
+    }
+    
+  </div>
+</section>
+}
+

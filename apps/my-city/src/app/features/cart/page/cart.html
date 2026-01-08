@@ -1,30 +1,30 @@
-@if (cart$ | async; as cartItems) {
-  @if (cartItems.length === 0) {
-    <p>Корзина пуста</p>
+@if (cart$ | async; as cart) {
+  @if (!cart || cart.items.length === 0) {
+    <p class="empty">Корзина пуста</p>
   } @else {
+    <section class="items">
+      @for (item of cart.items; track item.dishId) {
+        <app-cart-item
+          [cartItem]="item"
+          (increase)="onIncrease($event)"
+          (decrease)="onDecrease($event)"
+          (remove)="onRemove($event)"
+        />
+      }
+    </section>
 
-    @for (item of cartItems; track item.dishId) {
-      <app-cart-item
-        [cartItem]="item"
-        (increase)="onIncrease($event)"
-        (decrease)="onDecrease($event)"
-        (remove)="onRemove($event)"
-      />
-    }
+    <div class="total">
+      <h3>Итого: {{ total$ | async }} ₽</h3>
 
-    <div class="cart-total">
-      <h3>
-        Итого:
-        {{ total$ | async }} ₽
-      </h3>
+      <div class="actions">
+        <button mat-flat-button color="primary" (click)="createOrder()">
+          Оформить заказ
+        </button>
 
-      <button mat-flat-button color="primary">
-        Оформить заказ
-      </button>
-
-      <button mat-button color="warn" (click)="clearCart()">
-        Очистить корзину
-      </button>
+        <button mat-button color="warn" (click)="clearCart()">
+          Очистить корзину
+        </button>
+      </div>
     </div>
   }
 }

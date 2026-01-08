@@ -5,6 +5,8 @@ export interface Restaurant {
   cuisine: string;
   description?: string;
   isActive: boolean;
+  telegramUsername?: string| null;
+  telegramChatId?: string | null;
   imageUrl?: string;
   createdAt?: string;
   updatedAt?: string;

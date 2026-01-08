@@ -55,7 +55,9 @@ export class RestaurantDetail implements OnInit {
       dishId: dish.id,
       name: dish.name,
       price: dish.price,
-      quantity: 1
+      description: dish.description,
+      quantity: 1,
+      imageUrl: dish.imageUrl
     },
     this.id
   );

@@ -27,12 +27,12 @@ export class DishCard {
   private authService = inject(AuthService);
 
   @Input() dish!: Dish;
-  @Output() order = new EventEmitter<string>();
+  @Output() order = new EventEmitter<Dish>();
   @Output() delete = new EventEmitter<string>();
   protected isAdmin$ = this.authService.isAdmin$;
 
-  getInBasket(id: string) {
-    console.log(id);
+  getInBasket(dish: Dish) {
+    this.order.emit(dish);
     // this.order.emit(id);
   }
 

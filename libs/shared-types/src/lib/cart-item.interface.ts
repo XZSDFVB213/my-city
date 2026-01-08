@@ -2,8 +2,9 @@ export interface CartItem {
   dishId: string
   name: string
   price: number
+  description?: string
   quantity: number
-  imageUrl?: string
+  imageUrl: string
 }
 export interface Cart {
   restaurantId: string

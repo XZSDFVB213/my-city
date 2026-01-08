@@ -11,10 +11,11 @@
     
   <h2>Меню</h2>
   <div class="dishes">
+    
     @for(dish of dishes$ | async; track dish.id) {
         <app-dish-card
       [dish]="dish"
-      (order)="getInBasket(dish.id)"
+      (order)="getInBasket(dish)"
       (delete)="onDelete(dish.id)"
     ></app-dish-card>
     }

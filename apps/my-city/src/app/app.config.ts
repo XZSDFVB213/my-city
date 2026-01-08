@@ -9,7 +9,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes),
     provideHttpClient(withInterceptors([AdminTokenInterceptor])),
-
     provideAppInitializer(() => {
       const auth = inject(AuthService);
       return auth.init(); // может быть Promise или void

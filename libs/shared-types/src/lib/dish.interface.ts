@@ -1,10 +1,10 @@
 export interface Dish {
   id: string;
   name: string;
-  description?: string;
+  description: string;
   price: number;
   restaurantId: string;
-  imageUrl?: string;
+  imageUrl: string;
   isActive: boolean;
   createdAt?: string;
   updatedAt?: string;

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Cart, CartItem, CreateOrderDto } from '@my-city/shared-types';
 import { BehaviorSubject, map } from 'rxjs';
-
+import { OrderSchema } from '@my-city/entities';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +19,7 @@ export class CartService {
     }
   }
   createOrder(dto: CreateOrderDto) {
-    return this.http.post<OrderSchema>('http://localhost:3000/api/orders', dto);
+    return this.http.post<typeof OrderSchema>('http://localhost:3000/api/orders', dto);
   }
   private sync(cart: Cart | null) {
     if (cart) {

@@ -4,15 +4,31 @@ import { adminRoutes } from './features/admin/routes';
 
 export const appRoutes = [
   ...adminRoutes,
-  {path:'contacts',loadComponent: () => import('./features/contact/pages/contact').then(m => m.ContactComponent)},
-  {path:'',loadComponent: () => import('./features/home/pages/home-page').then(m => m.HomePage)},
   {
-  path: 'restaurants',
+    path: 'contacts',
+    loadComponent: () =>
+      import('./features/contact/pages/contact').then(
+        (m) => m.ContactComponent,
+      ),
+  },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./features/home/pages/home-page').then((m) => m.HomePage),
+  },
+  {
+    path: 'restaurants',
+    loadChildren: () =>
+      import('./features/restaurants/restautants.routes').then(
+        (m) => m.restaurantsRoutes,
+      ),
+  },
+  //   ...restaurantRoutes,
+  //   ...dishesRoutes,
+  {
+  path: 'cart',
   loadChildren: () =>
-    import('./features/restaurants/restautants.routes')
-      .then(m => m.restaurantsRoutes),
+    import('./features/cart/cart.routes').then((m) => m.cartRoutes),
 },
-//   ...restaurantRoutes,
-//   ...dishesRoutes,
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];

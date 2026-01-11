@@ -17,32 +17,32 @@ export class OrdersService {
 
     private telegramService: TelegramService,
   ) {}
-  
 
   async create(dto: CreateOrderDto): Promise<OrderEntity> {
-  const order = new this.orderModel(dto);
-  const savedOrder = await order.save();
+    const order = new this.orderModel(dto);
+    const savedOrder = await order.save();
 
-  const restaurant = await this.restaurantModel.findById(
-    dto.restaurantId,
-  );
+    const restaurant = await this.restaurantModel.findById(dto.restaurantId);
 
-  if (restaurant?.telegramChatId) {
-    const message = this.telegramService.buildOrderMessage(savedOrder);
+    try {
+      if (restaurant?.telegramChatId) {
+        const message = this.telegramService.buildOrderMessage(savedOrder);
+        await this.telegramService.sendMessage(
+          restaurant.telegramChatId,
+          message,
+        );
+      }
+    } catch (e) {
+      console.error('Telegram error:', e.message);
+    }
 
-    await this.telegramService.sendMessage(
-      restaurant.telegramChatId,
-      message,
-    );
+    return mapMongoId(savedOrder);
   }
 
-  return mapMongoId(savedOrder);
-}
-
   async findByStatus(status: 'pending' | 'confirmed' | 'completed') {
-  const orders = await this.orderModel.find({ status }).exec();
-  return orders.map(mapMongoId);
-}
+    const orders = await this.orderModel.find({ status }).exec();
+    return orders.map(mapMongoId);
+  }
   async findAll(): Promise<OrderEntity[]> {
     const orders = await this.orderModel.find().exec();
     return orders.map(mapMongoId);

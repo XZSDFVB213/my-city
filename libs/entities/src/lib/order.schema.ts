@@ -32,6 +32,11 @@ export class OrderEntity extends Document {
     default: 'pending',
   })
   status!: 'pending' | 'confirmed' | 'completed';
+
+  @Prop({ required: true, enum: ['Доставка', 'Самовывоз', 'В ресторане'] })
+  orderType!: 'Доставка' | 'Самовывоз' | 'В ресторане';
+  @Prop({ default: null })
+  tableId?:string;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(OrderEntity);

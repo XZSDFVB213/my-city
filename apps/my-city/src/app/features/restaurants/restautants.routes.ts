@@ -7,7 +7,15 @@ export const restaurantsRoutes: Routes = [
     component: Restaurants,
   },
   {
+    path: ':restaurantId/table/:tableId',
+    loadComponent: () =>
+      import('../restaurant-detail/page/restaurant-detail')
+        .then(m => m.RestaurantDetail),
+  },
+  {
     path: ':id',
-    loadComponent: () => import('../restaurant-detail/page/restaurant-detail').then(m => m.RestaurantDetail),
+    loadComponent: () =>
+      import('../restaurant-detail/page/restaurant-detail')
+        .then(m => m.RestaurantDetail),
   },
 ];

@@ -1,14 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Cart, CartItem, CreateOrderDto } from '@my-city/shared-types';
+import {  inject, Injectable } from '@angular/core';
+import { Cart, CartItem } from '@my-city/shared-types';
 import { BehaviorSubject, map } from 'rxjs';
-import { OrderSchema } from '@my-city/entities';
+import { TableService } from '../../../core/layout/service/table.service';
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private cartSubject = new BehaviorSubject<Cart | null>(null);
-  private http = inject(HttpClient);
+  private tableService = inject(TableService);
   cart$ = this.cartSubject.asObservable();
   private CART_KEY = 'cart';
 
@@ -18,9 +17,7 @@ export class CartService {
       this.cartSubject.next(JSON.parse(saved));
     }
   }
-  createOrder(dto: CreateOrderDto) {
-    return this.http.post<typeof OrderSchema>('http://localhost:3000/api/orders', dto);
-  }
+  
   private sync(cart: Cart | null) {
     if (cart) {
       localStorage.setItem(this.CART_KEY, JSON.stringify(cart));
@@ -37,15 +34,16 @@ export class CartService {
     const cart = this.cartSubject.value;
 
     if (!cart) {
-      const newCart = {
-        restaurantId,
-        items: [{ ...item, quantity: 1 }],
-        totalPrice: item.price,
-      };
-      this.cartSubject.next(newCart);
-      this.sync(newCart);
-      return;
-    }
+    const newCart:Cart = {
+      restaurantId,
+      items: [{ ...item, quantity: 1 }],
+      totalPrice: item.price,
+      orderType: 'Доставка', // Use optional chaining
+    };
+    this.cartSubject.next(newCart);
+    this.sync(newCart);
+    return;
+  }
 
     if (cart.restaurantId !== restaurantId) {
       throw new Error('Нельзя добавлять блюда из разных ресторанов');
@@ -124,5 +122,22 @@ export class CartService {
   }
   getCart() {
     return this.cartSubject.value;
+  }
+  setOrderType(type: 'Доставка' | 'Самовывоз' | 'В ресторане') {
+  const cart = this.cartSubject.value;
+  if (!cart) return;
+
+  const updatedCart = {
+    ...cart,
+    orderType: type,
+  };
+
+  this.cartSubject.next(updatedCart);
+  this.sync(updatedCart);
+}
+  isDineIn(){
+    const cart = this.cartSubject.value;
+    if(!cart) return false
+    return this.tableService.isDineIn(cart.restaurantId)
   }
 }

@@ -1,34 +1,52 @@
-import { OrderEntity } from '@my-city/entities';
 import { Injectable } from '@nestjs/common';
+import axios from 'axios';
+import { OrderEntity } from '@my-city/entities';
+
 @Injectable()
 export class TelegramService {
   private readonly token = process.env.TG_BOT_TOKEN;
 
   async sendMessage(chatId: string, text: string) {
+    if (!this.token) {
+      console.error('TG_BOT_TOKEN not set');
+      return;
+    }
+
     const url = `https://api.telegram.org/bot${this.token}/sendMessage`;
 
-    await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+    try {
+      await axios.post(url, {
         chat_id: chatId,
         text,
         parse_mode: 'HTML',
-      }),
-    });
+      });
+    } catch (error) {
+      console.error(
+        'Telegram sendMessage error:',
+        error?.response?.data || error.message,
+      );
+    }
   }
+
   buildOrderMessage(order: OrderEntity) {
-    const items = order.items
-      .map((i) => `• ${i.name} × ${i.quantity} = ${i.price * i.quantity} ₽`)
-      .join('\n');
+  const items = order.items
+    .map(
+      (i) => `• ${i.name} × ${i.quantity} = ${i.price * i.quantity} ₽`
+    )
+    .join('\n');
 
-    return `
-<b>🛒 Новый заказ</b>
+  const tableLine = order.tableId
+    ? `🪑 <b>Столик:</b> ${order.tableId.replace('table-', '')}\n`
+    : '';
 
-${items}
+  return `
+    <b>🛒 Новый заказ</b>
 
-<b>Итого:</b> ${order.totalPrice} ₽
-<b>Статус:</b> ${order.status}
-`;
-  }
+    ${tableLine}
+    ${items}
+
+    <b>Итого:</b> ${order.totalPrice} ₽
+    <b>Тип:</b> ${order.orderType}
+  `;
+}
 }

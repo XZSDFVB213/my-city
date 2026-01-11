@@ -1,6 +1,7 @@
 // create-order.dto.ts
 import { IsArray, IsMongoId, IsNumber, IsOptional, ValidateNested, IsEnum, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
+import { Prop } from '@nestjs/mongoose';
 
 export class OrderItemDto {
   @IsMongoId()
@@ -33,4 +34,13 @@ export class CreateOrderDto {
   @IsOptional()
   @IsEnum(['pending', 'confirmed', 'completed'])
   status?: string;
+
+  @IsOptional()
+  @IsEnum(['Доставка', 'Самовывоз', 'В ресторане'])
+  orderType?: 'Доставка' | 'Самовывоз' | 'В ресторане';
+
+  @IsOptional()
+  @IsString()
+  tableId!: string | null
 }
+

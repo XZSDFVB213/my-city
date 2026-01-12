@@ -24,6 +24,9 @@ export class RestaurantEntity extends Document {
   
   @Prop({ default: true })
   isActive!: boolean;
+  
+  @Prop({default:0})
+  ordersCount?: number
 }
 
 export const RestaurantSchema = SchemaFactory.createForClass(RestaurantEntity);

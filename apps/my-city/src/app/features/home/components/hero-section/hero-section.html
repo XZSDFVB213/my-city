@@ -15,12 +15,13 @@
         color="primary"
         routerLink="/restaurants"
       >
-        Найти ресторан
+        Выбрать ресторан
       </button>
 
       <button
         mat-stroked-button
         color="primary"
+        (click)="scanQrCode()"
       >
         Сканировать QR
       </button>

@@ -35,7 +35,7 @@ export class OrdersService {
     } catch (e) {
       console.error('Telegram error:', e.message);
     }
-
+    await this.restaurantModel.findByIdAndUpdate(dto.restaurantId, { $inc: { ordersCount: 1 } });
     return mapMongoId(savedOrder);
   }
 

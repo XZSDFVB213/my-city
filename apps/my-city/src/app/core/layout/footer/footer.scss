@@ -1,0 +1,73 @@
+.footer {
+  background: #0f172a;
+  color: #cbd5f5;
+  margin-top: 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.left h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #fff;
+}
+
+.left p {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.right a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #cbd5f5;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.right mat-icon {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.right a:hover {
+  color: #ffffff;
+}
+
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  padding: 12px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* 📱 Мобилка */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .right {
+    align-items: center;
+  }
+}

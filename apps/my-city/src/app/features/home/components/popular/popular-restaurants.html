@@ -5,7 +5,7 @@
   </header>
 
   <div class="grid">
-    @for (restaurant of restaurants; track restaurant.id) {
+    @for (restaurant of restaurants$ | async; track restaurant.id) {
       <app-restaurant-card [restaurant]="restaurant" />
     }
   </div>

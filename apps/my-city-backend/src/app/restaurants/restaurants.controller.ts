@@ -18,20 +18,28 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { UploadService } from '../upload/upload.service';
 @Controller('restaurants')
 export class RestaurantsController {
-  constructor(private readonly restaurantsService: RestaurantsService, private uploadService:UploadService) {}
-
+  constructor(
+    private readonly restaurantsService: RestaurantsService,
+    private uploadService: UploadService,
+  ) {}
 
   @Post()
   @UseGuards(AdminGuard)
   @UseInterceptors(FileInterceptor('image'))
-  async create(@Body() dto: CreateRestaurantDto,@UploadedFile() file?: Express.Multer.File) {
-    if(file){
-      const {url} = await this.uploadService.uploadFile(file);
-      dto.imageUrl = url
+  async create(
+    @Body() dto: CreateRestaurantDto,
+    @UploadedFile() file?: Express.Multer.File,
+  ) {
+    if (file) {
+      const { url } = await this.uploadService.uploadFile(file);
+      dto.imageUrl = url;
     }
     return this.restaurantsService.create(dto);
   }
-
+  @Get('popular')
+  async findPopular() {
+    return this.restaurantsService.findPopular();
+  }
   @Get()
   async findAll() {
     return this.restaurantsService.findAll();
@@ -45,10 +53,14 @@ export class RestaurantsController {
   @Patch(':id')
   @UseGuards(AdminGuard)
   @UseInterceptors(FileInterceptor('file'))
-  async update(@Param('id') id: string, @Body() dto: UpdateRestaurantDto,@UploadedFile() file?: Express.Multer.File) {
-    if (file){
-      const {url} = await this.uploadService.uploadFile(file);
-      dto.imageUrl = url
+  async update(
+    @Param('id') id: string,
+    @Body() dto: UpdateRestaurantDto,
+    @UploadedFile() file?: Express.Multer.File,
+  ) {
+    if (file) {
+      const { url } = await this.uploadService.uploadFile(file);
+      dto.imageUrl = url;
     }
     return this.restaurantsService.update(id, dto);
   }

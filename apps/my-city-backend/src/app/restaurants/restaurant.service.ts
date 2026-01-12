@@ -47,5 +47,9 @@ export class RestaurantsService {
   }
     if (!result) throw new NotFoundException('Restaurant not found');
   }
-  
+  async findPopular(): Promise<RestaurantEntity[]> {
+    const restaurants = await this.restaurantModel.find().sort({ rating: -1 }).limit(6).exec();
+    
+    return restaurants.map(mapMongoId);
+  }
 }

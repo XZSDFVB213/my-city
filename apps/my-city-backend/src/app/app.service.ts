@@ -6,6 +6,6 @@ export class AppService {
     return { message: 'Hello wq' };
   }
   getTest(){
-    return { message: 'Hello иди нахуй уебише' };
+    return { message: 'Hello' };
   }
 }

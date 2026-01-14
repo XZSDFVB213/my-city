@@ -18,8 +18,7 @@ export class HeaderComponent {
   links = [
     {id:1, name: 'Главная', path: '/' },
     {id:2, name: 'Рестораны', path: '/restaurants' },
-    {id:3, name: 'Блюда', path: '/dishes' },
-    {id:4, name: 'Контакты', path: '/contacts' },
-    {id:5,name:'Корзина',path:'/cart'},
+    {id:3, name: 'Контакты', path: '/contacts' },
+    {id:4,name:'Корзина',path:'/cart'},
   ];
 }

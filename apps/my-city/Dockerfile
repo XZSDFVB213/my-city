@@ -3,7 +3,7 @@ FROM node:20-bullseye AS build
 
 WORKDIR /app
 
-# Копируем package.json и nx.json для кеширования npm install
+#  package.json  nx.json   npm install
 COPY package*.json ./
 COPY nx.json ./
 COPY tsconfig.base.json ./
@@ -16,10 +16,10 @@ RUN npx nx build my-city --prod
 # Stage 2: Serve with Nginx
 FROM nginx:stable-alpine
 
-# Копируем билд Angular в nginx html
+#   Angular  nginx html
 COPY --from=build /app/dist/apps/my-city/browser /usr/share/nginx/html
 
-# Копируем кастомный конфиг nginx
+#    nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

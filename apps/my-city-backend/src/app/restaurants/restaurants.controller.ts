@@ -28,7 +28,7 @@ export class RestaurantsController {
   @UseInterceptors(FileInterceptor('image'))
   async create(
     @Body() dto: CreateRestaurantDto,
-    @UploadedFile() file?: Express.Multer.File,
+    @UploadedFile() file?: any,
   ) {
     if (file) {
       const { url } = await this.uploadService.uploadFile(file);
@@ -56,7 +56,7 @@ export class RestaurantsController {
   async update(
     @Param('id') id: string,
     @Body() dto: UpdateRestaurantDto,
-    @UploadedFile() file?: Express.Multer.File,
+    @UploadedFile() file?: any,
   ) {
     if (file) {
       const { url } = await this.uploadService.uploadFile(file);

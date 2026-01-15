@@ -29,7 +29,7 @@ export class DishesController {
   @UseInterceptors(FileInterceptor('image'))
   async create(
     @Body() dto: CreateDishDto,
-    @UploadedFile() file?: Express.Multer.File,
+    @UploadedFile() file?: any,
   ) {
     if (file) {
       const { url } = await this.uploadService.uploadFile(file);
@@ -57,7 +57,7 @@ export class DishesController {
   async update(
     @Param('id') id: string,
     @Body() dto: UpdateDishDto,
-    @UploadedFile() file?: Express.Multer.File,
+    @UploadedFile() file?: any,
   ) {
     if (file) {
       const { url } = await this.uploadService.uploadFile(file);

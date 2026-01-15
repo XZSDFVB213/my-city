@@ -19,7 +19,8 @@
       "@my-city/shared-services": ["libs/shared-services/src/index.ts"],
       "@my-city/shared-types": ["libs/shared-types/src/index.ts"],
       "@my-city/shared-ui": ["libs/shared-ui/src/index.ts"]
-    }
+    },
+    "types": ["node","jest"]
   },
   "exclude": ["node_modules", "tmp"]
 }

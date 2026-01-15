@@ -11,6 +11,9 @@
   "references": [
     {
       "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "../../libs/entities/tsconfig.json" // <-- добавляем ссылку на либу
     }
   ]
 }

@@ -6,7 +6,7 @@ COPY dist/apps/my-city-backend .
 
 COPY package.json package-lock.json ./
 
-RUN npm install --omit=dev
+RUN npm install --production
 
 ENV NODE_ENV=production
 

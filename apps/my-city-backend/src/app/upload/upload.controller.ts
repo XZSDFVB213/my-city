@@ -9,7 +9,7 @@ export class UploadController {
     @UseGuards(AdminGuard)
     @Post()
     @UseInterceptors(FileInterceptor('file'))
-    upload(@UploadedFile() file: Express.Multer.File) {
+    upload(@UploadedFile() file: any) {
     return this.uploadService.uploadFile(file);
 }
 }

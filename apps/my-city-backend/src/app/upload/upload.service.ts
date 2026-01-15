@@ -34,7 +34,7 @@ export class UploadService {
       }),
     );
   }
- async uploadFile(file: Express.Multer.File, oldUrl?: string) {
+ async uploadFile(file: any, oldUrl?: string) {
   // Удаляем старый файл, если есть
   if (oldUrl) {
     const oldKey = oldUrl.split('/').pop();

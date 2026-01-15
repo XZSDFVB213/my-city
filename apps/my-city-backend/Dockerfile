@@ -2,7 +2,7 @@ FROM node:20-bullseye
 
 WORKDIR /app
 
-COPY dist/apps/my-city-backend .
+COPY dist/apps/my-city-backend ./
 
 COPY package.json package-lock.json ./
 

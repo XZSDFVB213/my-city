@@ -12,7 +12,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
   app.enableCors({
-    origin: 'http://localhost:4200', // или '*' для всех
+    origin: 'http://my-derbent-city.ru', // или '*' для всех
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true, // если куки нужны
   });

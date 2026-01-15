@@ -1,7 +1,6 @@
 // create-order.dto.ts
 import { IsArray, IsMongoId, IsNumber, IsOptional, ValidateNested, IsEnum, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-import { Prop } from '@nestjs/mongoose';
 
 export class OrderItemDto {
   @IsMongoId()

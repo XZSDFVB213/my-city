@@ -37,4 +37,3 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
->>>>>>> 0dcc856 (all works commit on server)

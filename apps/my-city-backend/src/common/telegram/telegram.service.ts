@@ -38,13 +38,13 @@ export class TelegramService {
   const tableLine = order.tableId
     ? `🪑 <b>Столик:</b> ${order.tableId.replace('table-', '')}\n`
     : '';
-
+  const tableLine2 = order.phoneNumber
+    ? `📞 <b>Телефон:</b> ${order.phoneNumber}\n`: '';
   return `
     <b>🛒 Новый заказ</b>
-
-    ${tableLine}
-    ${items}
-
+  ${tableLine}
+  ${tableLine2}
+  ${items}
     <b>Итого:</b> ${order.totalPrice} ₽
     <b>Тип:</b> ${order.orderType}
   `;

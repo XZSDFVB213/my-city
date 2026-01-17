@@ -1,13 +1,9 @@
 @if (cart$ | async; as cart) { @if (!cart || cart.items.length === 0) {
 <p class="empty">Корзина пуста</p>
-} @else {
-  @if(table$ | async; as table) {
-    <div class="table-info">
-      Столик №{{table.tableId.replace('table-','')}}
-    </div>
-  }
+} @else { @if(table$ | async; as table) {
+<div class="table-info">Столик №{{table.tableId.replace('table-','')}}</div>
+}
 <section class="items">
-  
   @for (item of cart.items; track item.dishId) {
   <app-cart-item
     [cartItem]="item"
@@ -20,22 +16,43 @@
 
 <div class="total">
   <h3>Итого: {{ total$ | async }} ₽</h3>
-  @if(!isDineIn()){
-<div class="order-type">
-    <button class="btn btn-white btn-animate" mat-stroked-button (click)="setOrderType('Доставка')">
-      🚚 Доставка
+  @if(!isDineIn() && cart.orderType){
+  <mat-form-field>
+    <mat-label>Ваш номер для связи</mat-label>
+    <input
+      matInput
+      placeholder="+7 (___) ___-__-__"
+      [formControl]="number"
+      (blur)="updateErrorMessage()"
+      required
+    />
+    @if (number.invalid) {
+    <mat-error>{{errorMessage()}}</mat-error>
+    }
+  </mat-form-field>
+  <div class="order-type">
+    <button
+      class="btn btn-white btn-animate"
+      mat-stroked-button
+      (click)="setOrderType('Доставка')"
+    >
+      <mat-icon>moped</mat-icon> Доставка
     </button>
 
-    <button class="btn btn-white btn-animate" mat-stroked-button (click)="setOrderType('Самовывоз')">
-      🏃 Самовывоз
+    <button
+      class="btn btn-white btn-animate"
+      mat-stroked-button
+      (click)="setOrderType('Самовывоз')"
+    >
+      <mat-icon>person_4</mat-icon> Самовывоз
     </button>
   </div>
   } @else{
-    <p class="hint">Заказ оформляется за столиком</p>
-  } 
-  
+  <p class="hint">Заказ оформляется за столиком</p>
+  }
 
   <div class="actions">
+    @if(cart.orderType === 'В ресторане') {
     <button
       mat-flat-button
       color="primary"
@@ -44,6 +61,15 @@
     >
       Оформить заказ
     </button>
+    } @else {
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="createOrder()"
+    >
+      Оформить заказ
+    </button>
+    }
 
     <button mat-button color="warn" (click)="clearCart()">
       Очистить корзину

@@ -33,4 +33,8 @@ export class CreateOrderDto {
   @IsOptional()
   @IsEnum(['pending', 'confirmed', 'completed'])
   status?: string;
+
+  @IsOptional()
+  @IsString()
+  numberPhone?: string | null;
 }

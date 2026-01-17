@@ -37,6 +37,8 @@ export class OrderEntity extends Document {
   orderType!: 'Доставка' | 'Самовывоз' | 'В ресторане';
   @Prop({ default: null })
   tableId?:string;
+  @Prop({ default: null })
+  phoneNumber?: string;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(OrderEntity);

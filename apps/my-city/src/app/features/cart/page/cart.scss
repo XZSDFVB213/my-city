@@ -15,6 +15,7 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .total {
   max-width: 1200px;
   margin: 32px auto 0;
@@ -39,6 +40,9 @@
 .order-type{
   display: flex;
   gap: 20px;
+}
+mat-icon{
+    color: white;
 }
 .btn:link,
 .btn:visited {
@@ -91,6 +95,9 @@
 .btn-animated {
     animation: moveInBottom 5s ease-out;
     animation-fill-mode: backwards;
+}
+mat-form-field{
+  width: 30%;
 }
 
 @keyframes moveInBottom {

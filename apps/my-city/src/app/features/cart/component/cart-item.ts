@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCard, MatCardActions, MatCardContent } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIcon } from '@angular/material/icon';
 import { CartItem as Cartitem } from '@my-city/shared-types';
 @Component({
   selector: 'app-cart-item',
-  imports: [MatCard,MatCardContent,MatIconModule,MatCardActions],
+  imports: [MatCard,MatCardContent,MatCardActions,MatIcon],
   templateUrl: './cart-item.html',
   styleUrl: './cart-item.scss',
 })

@@ -17,4 +17,5 @@ export interface Order {
   createdAt: string;
   orderType : 'Доставка' | 'Самовывоз' | 'В ресторане';
   tableId?:string
+  phoneNumber?: string
 }

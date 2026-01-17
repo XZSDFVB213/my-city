@@ -41,5 +41,9 @@ export class CreateOrderDto {
   @IsOptional()
   @IsString()
   tableId!: string | null
+
+  @IsOptional()
+  @IsString()
+  phoneNumber!: string | null
 }
 

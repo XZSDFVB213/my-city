@@ -140,4 +140,14 @@ export class CartService {
     if(!cart) return false
     return this.tableService.isDineIn(cart.restaurantId)
   }
+  setNumberPhone(number: string){
+    const cart = this.cartSubject.value;
+    if(!cart) return
+    const updatedCart = {
+      ...cart,
+      phoneNumber: number,
+    };
+    this.cartSubject.next(updatedCart);
+    this.sync(updatedCart);
+  }
 }

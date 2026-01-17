@@ -12,5 +12,6 @@ export interface Cart {
   items: CartItem[];
   totalPrice: number;
   orderType: 'Доставка' | 'Самовывоз' | 'В ресторане';
-  tableId?:string
+  tableId?:string;
+  phoneNumber?: string;
 }

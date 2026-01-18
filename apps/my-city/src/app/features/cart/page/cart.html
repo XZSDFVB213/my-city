@@ -65,6 +65,7 @@
     <button
       mat-flat-button
       color="primary"
+      [disabled]="!cart.orderType || number.invalid"
       (click)="createOrder()"
     >
       Оформить заказ

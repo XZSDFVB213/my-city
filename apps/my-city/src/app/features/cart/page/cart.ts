@@ -44,10 +44,9 @@ export class Cart implements OnInit {
   private orderService = inject(OrdersService);
   private tableService = inject(TableService);
   table$ = this.tableService.table$;
-
   cart$ = this.cartService.cart$;
   total$ = this.cartService.total$;
-
+  cart = this.cart$.pipe(take(1));
   ngOnInit() {
     this.cartService.getCart();
     const cart = this.cartService.getCart();

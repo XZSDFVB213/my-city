@@ -99,7 +99,10 @@ mat-icon{
 mat-form-field{
   width: 70%;
 }
-
+button[disabled]{
+    background-color: #777 !important;
+    
+}
 @keyframes moveInBottom {
     0% {
         opacity: 0;

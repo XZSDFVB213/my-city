@@ -17,7 +17,7 @@ import { CreateDishDialog } from '../../dishes/dialog/create-dish-dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { CartService } from '../../cart/services/cart-service';
 import { TableService } from '../../../core/layout/service/table.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-restaurant-detail',
   imports: [DishCard, AsyncPipe, MatButtonModule],
@@ -34,6 +34,7 @@ export class RestaurantDetail implements OnInit {
   private dialog = inject(MatDialog);
   private cartService = inject(CartService);
   private table!: string;
+  private snackBar = inject(MatSnackBar);
   public id!: string;
   restaurant$?: Observable<Restaurant>;
   dishes$? = this.dishService.dishes$;
@@ -83,5 +84,6 @@ export class RestaurantDetail implements OnInit {
       },
       this.id,
     );
+    this.snackBar.open('Блюдо добавлено в корзину', 'Ок', { duration: 2000 });
   }
 }

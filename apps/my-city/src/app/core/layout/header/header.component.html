@@ -7,7 +7,9 @@
   <nav class="nav-links">
      @for (link of links; track link.id) {
     <a mat-button [routerLink]="link.path">{{ link.name }}</a>
-} 
+}   @if(cartCount$ | async; as cartCount) {
+    <span class="cart-count">{{cartCount}}</span>
+}
   </nav>
 
   <!-- Бургер-меню для мобилки -->

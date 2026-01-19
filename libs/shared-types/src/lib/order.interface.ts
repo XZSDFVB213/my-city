@@ -15,7 +15,8 @@ export interface Order {
   status: 'pending' | 'confirmed' | 'completed';
 
   createdAt: string;
-  orderType : 'Доставка' | 'Самовывоз' | 'В ресторане';
-  tableId?:string
-  phoneNumber?: string
+  orderType: 'Доставка' | 'Самовывоз' | 'В ресторане';
+  tableId?: string;
+  phoneNumber?: string;
+  paymentType: 'Наличными' | 'Картой';
 }

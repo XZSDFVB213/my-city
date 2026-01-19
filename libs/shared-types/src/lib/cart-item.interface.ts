@@ -14,4 +14,5 @@ export interface Cart {
   orderType: 'Доставка' | 'Самовывоз' | 'В ресторане';
   tableId?:string;
   phoneNumber?: string;
+  paymentType: 'Наличными' | 'Картой';
 }

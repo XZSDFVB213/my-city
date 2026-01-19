@@ -6,7 +6,6 @@ import {
   MatCardContent,
   MatCard,
 } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
 import { Dish } from '@my-city/shared-types';
 import { AuthService } from '../../admin/services/auth-service';
 
@@ -15,7 +14,6 @@ import { AuthService } from '../../admin/services/auth-service';
   imports: [
     MatButtonModule,
     AsyncPipe,
-    RouterLink,
     MatCardActions,
     MatCardContent,
     MatCard,

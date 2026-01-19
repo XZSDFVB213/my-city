@@ -54,6 +54,7 @@ export class CartService {
         items: [{ ...item, quantity: 1 }],
         totalPrice: item.price,
         orderType: 'Доставка',
+        paymentType: 'Наличными',
       };
 
       this.cartSubject.next(newCart);
@@ -171,5 +172,15 @@ export class CartService {
   }
   getCart(){
     return this.cartSubject.value;
+  }
+  public readonly itemsCount$ = this.cart$.pipe(
+    map((cart) => cart?.items.reduce((sum,i) => sum + i.quantity, 0) ?? 0),
+  );
+  setPaymentType(type: 'Наличными' | 'Картой'){
+    const cart = this.cartSubject.value;
+    if (!cart) return;
+    const updatedCart = { ...cart, paymentType: type };
+    this.cartSubject.next(updatedCart);
+    this.sync(updatedCart);
   }
 }

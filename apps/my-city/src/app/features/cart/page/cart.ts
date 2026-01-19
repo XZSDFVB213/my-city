@@ -13,15 +13,11 @@ import { take } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { CreateOrderDto } from '@my-city/shared-types';
 import { TableService } from '../../../core/layout/service/table.service';
-import {
-  FormControl,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormField, MatLabel, MatError } from '@angular/material/input';
-import {MatInputModule} from '@angular/material/input';
-import { MatIcon } from "@angular/material/icon";
-
+import { MatInputModule } from '@angular/material/input';
+import { MatIcon } from '@angular/material/icon';
+import { MatSelect, MatOption } from '@angular/material/select';
 @Component({
   selector: 'app-cart',
   imports: [
@@ -33,8 +29,10 @@ import { MatIcon } from "@angular/material/icon";
     ReactiveFormsModule,
     MatError,
     MatInputModule,
-    MatIcon
-],
+    MatIcon,
+    MatSelect,
+    MatOption,
+  ],
   templateUrl: './cart.html',
   styleUrl: './cart.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,7 +56,7 @@ export class Cart implements OnInit {
   readonly number = new FormControl('', [
     Validators.required,
     Validators.pattern(/^\+?\d{10,15}$/),
-    Validators.minLength(10),
+    Validators.minLength(11),
   ]);
   errorMessage = signal('');
   updateErrorMessage() {
@@ -71,7 +69,7 @@ export class Cart implements OnInit {
     if (this.number.hasError('pattern')) {
       this.errorMessage.set('Некорректный формат номера');
     }
-  } 
+  }
   setOrderType(type: 'Доставка' | 'Самовывоз' | 'В ресторане') {
     this.cartService.setOrderType(type);
   }
@@ -95,7 +93,7 @@ export class Cart implements OnInit {
   }
 
   createOrder() {
-    if (!this.number.valid){
+    if (!this.number.valid) {
       this.updateErrorMessage();
     }
     this.cart$.pipe(take(1)).subscribe((cart) => {
@@ -108,6 +106,7 @@ export class Cart implements OnInit {
         orderType: cart.orderType,
         tableId: tableId?.tableId ?? null,
         phoneNumber: this.number.value ?? null,
+        paymentType: cart.paymentType,
       };
 
       this.orderService.createOrder(dto).subscribe({
@@ -122,5 +121,8 @@ export class Cart implements OnInit {
       });
     });
   }
-
+  paymentType = new FormControl<'Наличными' | 'Картой' >('Наличными', [Validators.required])
+  setPaymentType(type: 'Наличными' | 'Картой') {
+    this.cartService.setPaymentType(type);
+  }
 }

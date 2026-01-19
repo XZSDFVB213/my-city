@@ -39,6 +39,8 @@ export class OrderEntity extends Document {
   tableId?:string;
   @Prop({ default: null })
   phoneNumber?: string;
+  @Prop({required: true, enum:['Наличными', 'Картой']})
+  paymentType!: 'Наличными' | 'Картой';
 }
 
 export const OrderSchema = SchemaFactory.createForClass(OrderEntity);

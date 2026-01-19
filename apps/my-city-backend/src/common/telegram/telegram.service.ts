@@ -40,13 +40,16 @@ export class TelegramService {
     : '';
   const tableLine2 = order.phoneNumber
     ? `📞 <b>Телефон:</b> ${order.phoneNumber}\n`: '';
+  const tableLine3 = order.paymentType
+    ? `💳 <b>Способ оплаты:</b> ${order.paymentType}\n`: '';
   return `
     <b>🛒 Новый заказ</b>
   ${tableLine}
   ${tableLine2}
+  ${tableLine3}
   ${items}
-    <b>Итого:</b> ${order.totalPrice} ₽
-    <b>Тип:</b> ${order.orderType}
+  <b>Итого:</b> ${order.totalPrice} ₽
+  <b>Тип:</b> ${order.orderType}
   `;
 }
 }

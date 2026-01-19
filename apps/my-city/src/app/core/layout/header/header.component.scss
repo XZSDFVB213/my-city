@@ -14,7 +14,20 @@
   .spacer {
     flex: 1 1 auto;
   }
-
+  .cart-count {
+    position: absolute;
+    top: 28px;
+    right: 13px;
+    background-color: #13458f;
+    color: white;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+  }
   .nav-links {
     display: flex;
     gap: 1rem;

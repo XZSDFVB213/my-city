@@ -37,4 +37,8 @@ export class CreateOrderDto {
   @IsOptional()
   @IsString()
   numberPhone?: string | null;
+
+  @IsOptional()
+  @IsEnum(['Наличными', 'Картой'])
+  paymentType!: string;
 }

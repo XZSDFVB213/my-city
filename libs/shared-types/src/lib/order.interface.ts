@@ -18,5 +18,5 @@ export interface Order {
   orderType: 'Доставка' | 'Самовывоз' | 'В ресторане';
   tableId?: string;
   phoneNumber?: string;
-  paymentType: 'Наличными' | 'Картой';
+  paymentType: 'Cash' | 'Card';
 }

@@ -54,7 +54,7 @@ export class CartService {
         items: [{ ...item, quantity: 1 }],
         totalPrice: item.price,
         orderType: 'Доставка',
-        paymentType: 'Наличными',
+        paymentType: 'Cash',
       };
 
       this.cartSubject.next(newCart);
@@ -176,7 +176,7 @@ export class CartService {
   public readonly itemsCount$ = this.cart$.pipe(
     map((cart) => cart?.items.reduce((sum,i) => sum + i.quantity, 0) ?? 0),
   );
-  setPaymentType(type: 'Наличными' | 'Картой'){
+  setPaymentType(type: 'Cash' | 'Card'){
     const cart = this.cartSubject.value;
     if (!cart) return;
     const updatedCart = { ...cart, paymentType: type };

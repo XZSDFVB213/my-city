@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { OrderEntity } from '@my-city/entities';
+import { PAYMENT_METHODS } from '../mappers/payment-method.mapper';
 
 @Injectable()
 export class TelegramService {
@@ -40,8 +41,7 @@ export class TelegramService {
     : '';
   const tableLine2 = order.phoneNumber
     ? `📞 <b>Телефон:</b> ${order.phoneNumber}\n`: '';
-  const tableLine3 = order.paymentType
-    ? `💳 <b>Способ оплаты:</b> ${order.paymentType}\n`: '';
+  const tableLine3 = order.paymentType ? `<b>Способ оплаты:</b> ${PAYMENT_METHODS[order.paymentType]}\n`:'Не указано, сообщите мне об этом!';
   return `
     <b>🛒 Новый заказ</b>
   ${tableLine}

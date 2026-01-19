@@ -33,8 +33,8 @@
   <mat-form-field>
     <mat-label>Способ оплаты</mat-label>
     <mat-select [formControl]="paymentType" (selectionChange)="setPaymentType($event.value)">
-      <mat-option value="Наличными">Наличные</mat-option>
-      <mat-option value="Картой">Карта</mat-option>
+      <mat-option value="Cash">Наличные</mat-option>
+      <mat-option value="Card">Карта</mat-option>
     </mat-select>
   </mat-form-field>  <div class="order-type">
     <button

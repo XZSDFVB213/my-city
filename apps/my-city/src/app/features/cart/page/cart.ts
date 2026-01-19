@@ -121,8 +121,8 @@ export class Cart implements OnInit {
       });
     });
   }
-  paymentType = new FormControl<'Наличными' | 'Картой' >('Наличными', [Validators.required])
-  setPaymentType(type: 'Наличными' | 'Картой') {
+  paymentType = new FormControl<'Cash' | 'Card' >('Cash', [Validators.required])
+  setPaymentType(type: 'Cash' | 'Card') {
     this.cartService.setPaymentType(type);
   }
 }

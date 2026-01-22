@@ -1,5 +1,6 @@
 // apps/my-city-backend/src/app/restaurants/dishes/dto/create-dish.dto.ts
-import { IsString, IsOptional, IsNumber, IsMongoId, IsUrl, IsBoolean } from 'class-validator';
+import { DISH_CATEGORIES, DishCategory } from '../dish-categories';
+import { IsString, IsOptional, IsNumber, IsMongoId, IsUrl, IsBoolean, IsIn } from 'class-validator';
 
 export class CreateDishDto {
   @IsString()
@@ -22,4 +23,7 @@ export class CreateDishDto {
   @IsOptional()
   @IsBoolean()
   isActive?: boolean;
+  
+  @IsIn(DISH_CATEGORIES)
+  category: DishCategory;
 }

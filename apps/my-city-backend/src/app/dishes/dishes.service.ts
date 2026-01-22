@@ -48,4 +48,8 @@ export class DishesService {
   console.log(dishes); // теперь должно показать блюда
   return dishes.map(mapMongoId);
 }
+  async getRestaurantCategories(restaurantId: string): Promise<string[]> {
+    const categories = await this.dishModel.find({restaurantId,isActive:true}).distinct('category', { restaurantId }).exec();
+    return categories;
+  }
 }

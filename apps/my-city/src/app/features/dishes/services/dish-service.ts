@@ -9,6 +9,8 @@ import {environment} from '../../../../environments/environment';
 export class DishService {
   private dishes = new BehaviorSubject<Dish[]>([]);
   dishes$ = this.dishes.asObservable();
+  private categories = new BehaviorSubject<string[]>([]);
+  categories$ = this.categories.asObservable();
   private http = inject(HttpClient);
   private bashUrl = environment.apiUrl;
   public getDishesByRestaurant(restaurantId: string): Observable<Dish[]> {
@@ -28,4 +30,7 @@ export class DishService {
         }),
       );
   }
+  getCategories() {
+  return this.http.get<string[]>(`${this.bashUrl}/dishes/categories`).subscribe((data) => this.categories.next(data));
+}
 }

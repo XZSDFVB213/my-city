@@ -11,5 +11,5 @@
   "include": [
     "src/**/*.ts",
     "../../libs/entities/src/**/*.ts" // <-- добавил сюда все схемы/сущности
-  ]
+, "../../libs/entities/src/lib/dish-categories.ts"  ]
 }

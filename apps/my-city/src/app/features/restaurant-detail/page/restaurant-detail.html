@@ -1,26 +1,38 @@
 @if(restaurant$ | async; as restaurant ){
-    <section >
-    @if (isAdmin$ | async) {
-      <button mat-flat-button color="primary" (click)="openCreateDialog()">
-        + Добавить блюдо
-      </button>
-    }
+<section>
+  @if (isAdmin$ | async) {
+  <button mat-flat-button color="primary" (click)="openCreateDialog()">
+    + Добавить блюдо
+  </button>
+  }
   <h1>{{ restaurant.name }}</h1>
   <p>{{ restaurant.cuisine }}</p>
   <img [src]="restaurant.imageUrl" alt="{{ restaurant.name }}" />
-    
+
   <h2>Меню</h2>
+  <div class="dishes-filter">
+    <mat-form-field appearance="outline">
+      <mat-label>Категория</mat-label>
+      <mat-select
+        [value]="null"
+        (selectionChange)="onCategoryChange($event.value)"
+      >
+        <mat-option [value]="null">Все</mat-option>
+        @for(c of filteredCategories$ | async; track c) {
+        <mat-option [value]="c">{{ c }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    </div>
   <div class="dishes">
     
-    @for(dish of dishes$ | async; track dish.id) {
-        <app-dish-card
+    @for(dish of filteredDishes$ | async; track dish.id) {
+    <app-dish-card
       [dish]="dish"
       (order)="getInBasket(dish)"
       (delete)="onDelete(dish.id)"
     ></app-dish-card>
     }
-    
   </div>
 </section>
 }
-

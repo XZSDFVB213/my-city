@@ -1,3 +1,5 @@
+import { DishCategory } from "./dish-categories";
+
 export interface Dish {
   id: string;
   name: string;
@@ -8,4 +10,6 @@ export interface Dish {
   isActive: boolean;
   createdAt?: string;
   updatedAt?: string;
+  category?: DishCategory;
+
 }

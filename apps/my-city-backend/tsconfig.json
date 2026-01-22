@@ -7,7 +7,7 @@
     "declaration": true
   },
   "files": [],
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "**/*.d.ts", "**/*.test.ts", "**/*.spec.ts"],
   "references": [
     {
       "path": "./tsconfig.app.json"

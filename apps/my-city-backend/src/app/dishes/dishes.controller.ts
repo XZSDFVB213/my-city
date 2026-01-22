@@ -16,6 +16,7 @@ import { UploadService } from '../upload/upload.service';
 import { CreateDishDto } from './dto/create-dish.dto';
 import { UpdateDishDto } from './dto/update-dish.dto';
 import { AdminGuard } from '../auth/auth.guard';
+import { DISH_CATEGORIES } from './dish-categories';
 
 @Controller('dishes')
 export class DishesController {
@@ -27,10 +28,7 @@ export class DishesController {
   @Post()
   @UseGuards(AdminGuard)
   @UseInterceptors(FileInterceptor('image'))
-  async create(
-    @Body() dto: CreateDishDto,
-    @UploadedFile() file?: any,
-  ) {
+  async create(@Body() dto: CreateDishDto, @UploadedFile() file?: any) {
     if (file) {
       const { url } = await this.uploadService.uploadFile(file);
       dto.imageUrl = url;
@@ -42,7 +40,11 @@ export class DishesController {
   findAll() {
     return this.dishesService.findAll();
   }
-@Get('restaurants/:restaurantId/dishes')
+  @Get('categories')
+  getCategories() {
+    return DISH_CATEGORIES;
+  }
+  @Get('restaurants/:restaurantId/dishes')
   getByRestaurantId(@Param('restaurantId') restaurantId: string) {
     return this.dishesService.getByRestaurantId(restaurantId);
   }
@@ -65,7 +67,7 @@ export class DishesController {
     }
     return this.dishesService.update(id, dto);
   }
-  
+
   @Delete(':id')
   @UseGuards(AdminGuard)
   remove(@Param('id') id: string) {

@@ -1,7 +1,5 @@
-// libs/entities/lib/src/dishes.schema.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-
 @Schema({ timestamps: true })
 export class DishEntity extends Document {
   @Prop({ required: true })
@@ -21,6 +19,9 @@ export class DishEntity extends Document {
 
   @Prop({ default: true })
   isActive!: boolean;
+
+  @Prop()
+  category?: string;
 }
 
 export const DishSchema = SchemaFactory.createForClass(DishEntity);

@@ -18,6 +18,7 @@ import { MatFormField, MatLabel, MatError } from '@angular/material/input';
 import { MatInputModule } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatSelect, MatOption } from '@angular/material/select';
+import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-cart',
   imports: [
@@ -45,6 +46,8 @@ export class Cart implements OnInit {
   cart$ = this.cartService.cart$;
   total$ = this.cartService.total$;
   cart = this.cart$.pipe(take(1));
+  private title = inject(Title);
+  private meta = inject(Meta);
   ngOnInit() {
     this.cartService.getCart();
     const cart = this.cartService.getCart();
@@ -52,6 +55,8 @@ export class Cart implements OnInit {
     if (this.tableService.isDineIn(cart.restaurantId)) {
       this.cartService.setOrderType('В ресторане');
     }
+    this.title.setTitle('Корзина | My-City');
+    this.meta.updateTag({ name: 'description', content: 'Корзина | My-City' });
   }
   readonly number = new FormControl('', [
     Validators.required,

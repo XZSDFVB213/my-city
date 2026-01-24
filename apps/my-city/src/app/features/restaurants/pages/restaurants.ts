@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateRestaurantDialog } from '../dialog/create-restaurant-dialog';
 import { RestaurantCard } from '../../../core/layout/restaurant-card/restaurant-card';
+import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-restaurants',
   standalone: true,
@@ -25,11 +26,15 @@ export class Restaurants implements OnInit {
   private restaurantService = inject(ResturantService);
   public restaurants$ = this.restaurantService.restaurants$;
   protected isAdmin$ = this.authService.isAdmin$;
-    private dialog =  inject(MatDialog)
-
+  private dialog =  inject(MatDialog)
+  private title = inject(Title)
+  private meta = inject(Meta)
   ngOnInit() {
     console.log('Console');
     this.restaurantService.getRestaurants().subscribe();
+    this.title.setTitle('Все рестораны города | Ваш сервис - My-City');  
+    this.meta.addTag({ name: 'description', content: 'Закажите еду в ресторанах через сервис My-City. Доступен самовывоз и доставка, а так-же отсканировав Qr-Код на столе можно заказать в ресторане' });
+
   }
 openCreateDialog() {
   

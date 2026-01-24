@@ -7,7 +7,7 @@ import {
 import { ResturantService } from '../../restaurants/services/resturant-service';
 import { DishService } from '../../dishes/services/dish-service';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, Subscription } from 'rxjs';
 import { Dish, Restaurant } from '@my-city/shared-types';
 import { DishCard } from '../../dishes/card/dish-card';
 import { AsyncPipe } from '@angular/common';
@@ -20,6 +20,7 @@ import { TableService } from '../../../core/layout/service/table.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSelectModule } from "@angular/material/select";
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-restaurant-detail',
   imports: [DishCard, AsyncPipe, MatButtonModule, MatSelectModule,MatFormFieldModule],
@@ -42,7 +43,9 @@ export class RestaurantDetail implements OnInit {
   dishes$? = this.dishService.dishes$;
   categories$? = this.dishService.categories$;
   private tableService = inject(TableService);
-
+  private title = inject(Title);
+  private meta = inject(Meta);
+  private subscription!: Subscription;
   ngOnInit() {
     const params = this.rout.snapshot.params;
 
@@ -62,6 +65,13 @@ export class RestaurantDetail implements OnInit {
     this.restaurant$ = this.restaurantService.getRestaurantById(this.id);
     this.dishService.getCategories();
     this.dishService.getDishesByRestaurant(this.id).subscribe();
+
+    this.subscription = this.restaurant$.pipe(
+    map((r) => r.name)
+  ).subscribe((restaurantName) => {
+    this.title.setTitle(`Меню ресторана ${restaurantName} | My-City`);
+  });
+    this.meta.addTag({ name: 'description', content: 'Закажите еду в ресторане через сервис My-City. Доступен самовывоз и доставка' });
   }
 
   openCreateDialog() {

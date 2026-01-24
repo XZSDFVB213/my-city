@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact',
@@ -19,7 +20,8 @@ export class ContactComponent implements OnInit {
 
   private fb = inject(FormBuilder);
   private contactService = inject(ContactService);
-
+  private title = inject(Title)
+  private meta = inject(Meta)
   ngOnInit() {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -27,6 +29,9 @@ export class ContactComponent implements OnInit {
       phone: [''],
       message: ['', Validators.required],
     });
+     this.title.setTitle('Связь c разработчиком | My-City');  
+    this.meta.addTag({ name: 'description', content: 'Связь c разработчиком | My-City' });
+
   }
 
   submit() {
@@ -40,7 +45,7 @@ export class ContactComponent implements OnInit {
         this.form.reset();
       },
       error: (err) => {
-        this.error = 'Ошибка отправки сообщения';
+        this.error = 'Ошибка отправки сообщения' + err.message;
         this.success = false;
       },
     });

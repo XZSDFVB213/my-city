@@ -10,7 +10,7 @@ import { CartService } from './features/cart/services/cart-service';
   styleUrl: './app.scss',
 })
 export class App implements OnInit{
-  protected title = 'My-city - Дербент | Доставка и многое другое';
+  protected title = 'Доставка еды в Дербенте - заказать онлайн из ресторанов | My-City';
   private cartService = inject(CartService)
   ngOnInit() {
     this.cartService.init()

@@ -60,13 +60,14 @@ section {
     }
 
     .mat-select {
-      color: #fff;
-
+      color: #fff !important;
+      font-weight: 500;
+      font-family: 'Montserrat', sans-serif;
       .mat-select-value-text {
-        color: #fff;
+        color: #fff !important;
       }
     }
-
+   
     .mat-select-panel {
       background: #1e1e2f;
       color: #fff;

@@ -20,7 +20,7 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Категория</mat-label>
       <mat-select formControlName="category">
-        @for (c of categories; track c) {
+        @for (c of categories | async; track c) {
         <mat-option [value]="c">{{ c }}</mat-option>
         }
       </mat-select>

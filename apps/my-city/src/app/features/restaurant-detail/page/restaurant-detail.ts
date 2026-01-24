@@ -8,7 +8,7 @@ import { ResturantService } from '../../restaurants/services/resturant-service';
 import { DishService } from '../../dishes/services/dish-service';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
-import { Dish, DishCategory, Restaurant } from '@my-city/shared-types';
+import { Dish, Restaurant } from '@my-city/shared-types';
 import { DishCard } from '../../dishes/card/dish-card';
 import { AsyncPipe } from '@angular/common';
 import { AuthService } from '../../admin/services/auth-service';

@@ -22,6 +22,7 @@ import {
 import { DishService } from '../services/dish-service';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -38,6 +39,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    AsyncPipe,
   ],
 })
 export class CreateDishDialog implements OnInit {
@@ -45,7 +47,7 @@ export class CreateDishDialog implements OnInit {
   private fb = inject(FormBuilder);
   private dishService = inject(DishService);
   private dialogRef = inject(MatDialogRef);
-  public categories: string[] = [];
+  public categories = this.dishService.categories$;
   form!: FormGroup;
   restaurantId: string = this.data.restaurantId;
   ngOnInit(): void {
@@ -57,6 +59,7 @@ export class CreateDishDialog implements OnInit {
       category: ['', Validators.required],
     });
     ;
+    this.dishService.getCategories();
   }
   submit() {
     if (this.form.invalid) return;

@@ -16,6 +16,6 @@ export class HomePage implements OnInit{
   ngOnInit(): void {
     this.title.setTitle('Доставка еды в Дербенте - заказать онлайн | My-City');  
     this.meta.addTag({ name: 'description', content: 'Доставка еды в Дербенте - заказать онлайн | My-City' });
-
+    this.meta.addTag({name:'keywords',content:'доставка еды в дербенте,заказ еды дербент,заказать еду дербент,доставка еды,заказ еды,заказать еду'});
   }
 }

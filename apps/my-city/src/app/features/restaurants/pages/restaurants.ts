@@ -34,6 +34,7 @@ export class Restaurants implements OnInit {
     this.restaurantService.getRestaurants().subscribe();
     this.title.setTitle('Все рестораны города | Ваш сервис - My-City');  
     this.meta.addTag({ name: 'description', content: 'Закажите еду в ресторанах через сервис My-City. Доступен самовывоз и доставка, а так-же отсканировав Qr-Код на столе можно заказать в ресторане' });
+    this.meta.addTag({name:'keywords',content:'доставка еды в дербенте,заказ еды дербент,заказать еду дербент,доставка еды,заказ еды,заказать еду'});
 
   }
 openCreateDialog() {
